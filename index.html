@@ -2,16 +2,18 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="timeline">
-      <div class="event" data-year="1977">Original Trilogy Begins</div>
-      <div class="event" data-year="1999">Prequel Trilogy Begins</div>
-      <div class="event" data-year="2015">Sequel Trilogy Begins</div>
+    <div class="page-title">
+      Star Wars Trilogy Evolution
     </div>
-    <div class="timeline-content">
-      <!-- Content for each event -->
-    </div>
+
+    <div id="timeline"></div>
+    <div id="movie-details-container"></div>
+    
     <script src="script.js"></script>
   </body>
 </html>

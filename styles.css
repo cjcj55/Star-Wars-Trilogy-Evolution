@@ -1,1 +1,10 @@
+#timeline {
+    height: 300px;
+}
 
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
