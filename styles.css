@@ -2,6 +2,13 @@
     height: 300px;
 }
 
+#revenue-over-time {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .page-title {
     text-align: center;
     font-size: 28px;
