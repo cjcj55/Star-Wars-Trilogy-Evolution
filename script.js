@@ -1,26 +1,56 @@
 /**
  * TIMELINE
  */
-    // Sample data for the timeline
     const timelineData = new vis.DataSet([
-        { id: 1, content: 'Episode IV: A New Hope', start: '1977-05-25',
-            cast: 'Mark Hamill, Harrison Fort, Carrie Fisher, Peter Cushing, Alec Guinness, David Prowse, James Earl Jones, Anthony Daniels, Kenny Baker, Peter Mayhew' },
-        { id: 2, content: 'Episode V: The Empire Strikes Back', start: '1980-05-21',
-            cast: 'Mark Hamill, Harrison Fort, Carrie Fisher, Billy Dee Williams, Anthony Daniels, David Prowse, Kenny Baker, Peter Mayhew, Frank Oz'},
-        { id: 3, content: 'Episode VI: Return of the Jedi', start: '1983-05-25',
-            cast: 'Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams, Anthony Daniels, David Prowse, Kenny Baker, Peter Mayhew, Frank Oz' },
-        { id: 4, content: 'Episode I: The Phantom Menace', start: '1999-05-19',
-            cast: 'Liam Neeson, Ewam McGregor, Natalie Portman, Jake Lloyd, Ahmed Best, Ian McDiarmid, Anthony Daniels, Kenny Baker, Pernilla August, Frank Oz' },
-        { id: 5, content: 'Episode II: Attack of the Clones', start: '2002-05-16',
-            cast: 'Ewan McGregor, Natalie Portman, Hayden Christensen, Ian McDiarmid, Samuel L. Jackson, Christopher Lee, Anthony Daniels, Kenny Baker, Frank Oz, Temuera Morrison, Silas Carson, Jimmy Smits' },
-        { id: 6, content: 'Episode III: Revenge of the Sith', start: '2005-05-19',
-            cast: 'Ewan McGregor, Natalie Portman, Hayden Christensen, Ian McDiarmid, Samuel L. Jackson, Christopher Lee, Anthony Daniels, Kenny Baker, Frank Oz' },
-        { id: 7, content: 'Episode VII: The Force Awakens', start: '2015-12-18',
-            cast: 'Harrison Fort, Mark Hamill, Carrie Fisher, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Lupita Nyong\'o, Andy Serkis, Domhnall Gleeson, Anthony Daniels, Peter Mayhew, Max von Sydow' },
-        { id: 8, content: 'Episode VIII: The Last Jedi', start: '2017-12-15',
-            cast: 'Mark Hamill, Carrie Fisher, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Andy Serkis, Lupita Nyong\'o, Domhnall Gleeson, Anthony Daniels, Gwendoline Christie, Kelly Marie Tran, Laura Dern, Benicio del Toro' },
-        { id: 9, content: 'Episode IX: The Rise of Skywalker', start: '2019-12-20',
-            cast: 'Carrie Fisher, Mark Hamill, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Anthony Daniels, Naomi Ackie, Domhnall Gleeson, Richard E. Grant, Lupita Nyong\'o, Keri Russell, Joonas Suotamo, Kelly Marie Tran, Ian McDiarmid, Billy Dee Williams' }
+        { id: 1, content: 'Episode IV: A New Hope', start: '1977-05-25', group: 'main',
+            cast: 'Mark Hamill, Harrison Fort, Carrie Fisher, Peter Cushing, Alec Guinness, David Prowse, James Earl Jones, Anthony Daniels, Kenny Baker, Peter Mayhew',
+            cinematic: 'Groundbreaking use of practical effects and miniatures to create realistic spacecraft battles.',
+            visual: 'iconic costume designs, including Darth Vader\'s helmet and cape.',
+            tech: 'Innovations in visual effects, including the use of stop-motion animation, motion control cameras and matte paintings.'},
+        { id: 2, content: 'Episode V: The Empire Strikes Back', start: '1980-05-21', group: 'main',
+            cast: 'Mark Hamill, Harrison Fort, Carrie Fisher, Billy Dee Williams, Anthony Daniels, David Prowse, Kenny Baker, Peter Mayhew, Frank Oz', 
+            cinematic: 'Expansion of the Star Wars universe with new locations like Hoth and Cloud City.',
+            visual: 'Introduction of iconic characters like Yoda and Boba Fett.',
+            tech: 'Improved puppetry for Yoda, advancements in animatronics for creating creatures, and enhanced stop-motion animation.'},
+        { id: 3, content: 'Episode VI: Return of the Jedi', start: '1983-05-25', group: 'main',
+            cast: 'Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams, Anthony Daniels, David Prowse, Kenny Baker, Peter Mayhew, Frank Oz',
+            cinematic: 'Epic space and ground battles, including the Battle of Endor.',
+            visual: 'The creation of the Ewoks and the Emperor\s throne room.',
+            tech: 'Further developments in practical effects and puppetry.'},
+        { id: 4, content: 'Episode I: The Phantom Menace', start: '1999-05-19', group: 'main',
+            cast: 'Liam Neeson, Ewam McGregor, Natalie Portman, Jake Lloyd, Ahmed Best, Ian McDiarmid, Anthony Daniels, Kenny Baker, Pernilla August, Frank Oz',
+            cinematic: 'Introduced advanced CGI technology for more elaborate and expansive worlds.',
+            visual: 'The podrace sequence and the Gungan city of Otoh Gunga.',
+            tech: 'Pioneered the use of digital characters and environments on a large scale.'},
+        { id: 5, content: 'Episode II: Attack of the Clones', start: '2002-05-16', group: 'main',
+            cast: 'Ewan McGregor, Natalie Portman, Hayden Christensen, Ian McDiarmid, Samuel L. Jackson, Christopher Lee, Anthony Daniels, Kenny Baker, Frank Oz, Temuera Morrison, Silas Carson, Jimmy Smits',
+            cinematic: 'Larger-scale battles and action sequences, including the Battle of Geonosis.',
+            visual: 'The introduction of the clone troopers and various new planets.',
+            tech: 'Enhanced CGI capabilities and the use of digital doubles for actors.'},
+        { id: 6, content: 'Episode III: Revenge of the Sith', start: '2005-05-19', group: 'main',
+            cast: 'Ewan McGregor, Natalie Portman, Hayden Christensen, Ian McDiarmid, Samuel L. Jackson, Christopher Lee, Anthony Daniels, Kenny Baker, Frank Oz',
+            cinematic: 'Dark and intense visual style, particularly during Anakin\'s transformation into Darth Vader',
+            visual: 'Dramatic lightsaber duels and the creation of Mustafar.',
+            tech: 'Improved CGI, motion-capture technology for Yoda\'s fights, and advancements in visual effects.'},
+        { id: 7, content: 'Episode VII: The Force Awakens', start: '2015-12-18', group: 'main',
+            cast: 'Harrison Fort, Mark Hamill, Carrie Fisher, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Lupita Nyong\'o, Andy Serkis, Domhnall Gleeson, Anthony Daniels, Peter Mayhew, Max von Sydow',
+            cinematic: 'A return to practical effects and real sets, emphasizing the visual style of the original trilogy.',
+            visual: 'Introduction of new characters, such as Rey and Kylo Ren.',
+            tech: 'Blend of practical and digital effects for a modern yet nostalgic look.'},
+        { id: 8, content: 'Episode VIII: The Last Jedi', start: '2017-12-15', group: 'main',
+            cast: 'Mark Hamill, Carrie Fisher, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Andy Serkis, Lupita Nyong\'o, Domhnall Gleeson, Anthony Daniels, Gwendoline Christie, Kelly Marie Tran, Laura Dern, Benicio del Toro',
+            cinematic: 'Innovative cinematography and visual storytelling, especially in space battles.',
+            visual: 'Development of character arcs for Rey, Kylo Ren, and Finn.',
+            tech: 'Continuation of the blend of practical and digital effects, with enhancements in creature design and effects work.'},
+        { id: 9, content: 'Episode IX: The Rise of Skywalker', start: '2019-12-20', group: 'main',
+            cast: 'Carrie Fisher, Mark Hamill, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Anthony Daniels, Naomi Ackie, Domhnall Gleeson, Richard E. Grant, Lupita Nyong\'o, Keri Russell, Joonas Suotamo, Kelly Marie Tran, Ian McDiarmid, Billy Dee Williams',
+            cinematic: 'Epic conclusion with massive fleet battles and lightsaber duels.',
+            visual: 'Resolution of character arcs and the return of classic characters.',
+            tech: 'Utilized the latest CGI advancements and practical effects to deliver a visually stunning and emotionally resonant conclusion.'}
+    ]);
+
+    const additionalData = new vis.DataSet([
+        { id: 10, content: 'testing', start: '1985-01-01', group: 'additional', className: 'cinematic-advancements' }
     ]);
     
     // Create a timeline
@@ -28,8 +58,14 @@
     const options = {
         start: '1970-01-01', // Start year for the timeline
         end: '2023-01-01',   // End year for the timeline
+        groupOrder: 'desc',  // Order the groups in descending order
     };
     const timeline = new vis.Timeline(container, timelineData, options);
+    timeline.setGroups([
+        { id: 'main', content: 'Movies' },
+        { id: 'additional', content: 'Cinematic Advancements' }
+    ]);
+    timeline.setItems(new vis.DataSet([...timelineData.get(), ...additionalData.get()]));
 
 /**
  * TIMELINE MOVIE DETAILS
@@ -43,8 +79,10 @@
         if (movie) {
         const detailsHtml = `
             <h3>${movie.content}</h3>
-            <p><b>Release Date: </b>${movie.start}</p>
-            <p><b>Cast: </b>${movie.cast}</p>
+            <p id='release-date'><b>Release Date: </b>${movie.start}</p>
+            <p><b>Cinematic Elements: </b>${movie.cinematic}</p>
+            <p><b>Visual Elements: </b>${movie.visual}</p>
+            <p><b>New Technologies: </b>${movie.tech}</p>
         `;
         movieDetailsContainer.innerHTML = detailsHtml;
         }
@@ -56,6 +94,18 @@
         displayMovieDetails(properties.item);
         }
     });
+
+    // Function to set the initial movie details
+    function setInitialMovieDetails() {
+        // Set the movie ID for "Episode IV: A New Hope"
+        const initialMovieId = 1;
+        
+        // Display the details for the initial movie
+        displayMovieDetails(initialMovieId);
+    }
+
+    // Call the function to set the initial movie details when the page loads
+    window.addEventListener('load', setInitialMovieDetails);
 
 
 
