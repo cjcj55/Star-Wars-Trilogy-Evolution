@@ -49,16 +49,49 @@
             tech: 'Utilized the latest CGI advancements and practical effects to deliver a visually stunning and emotionally resonant conclusion.'}
     ]);
 
+    const today = new Date();
     const additionalData = new vis.DataSet([
-        { id: 10, content: 'testing', start: '1985-01-01', group: 'additional', className: 'cinematic-advancements' }
+        { id: 10, content: 'Silent Film Era', start: '1890-01-01', end: '1929-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Thomas Edison\'s Kinetoscope (1891):</b> Edison\'s invention allowed for the viewing of short, silent films through a peephole, setting the state for motion picture technology.</p>' +
+                    '<p><b>Limiere Brothers\' Cinematographe (1895):</b> This portable film projector and camera enabled public screenings and is often credited as the birth of cinema.</p>' +
+                    '<p><b>Intertitles:</b> Silent films relied on text-based intertitles to convey dialogue and narrative to the audience.</p>' +
+                    '<p><b>Hand-cranked Cameras:</b> Early film cameras required manual cranking for filming, resulting in variable frame rates.</p>' },
+        { id: 11, content: 'Advent of Sound', start: '1920-01-01', end: '1939-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>The Jazz Singer (1927):</b> This Warner Bros. film marked the transition from silent to sound cinema, featuring synchronized sound and dialogue.</p>' +
+                    '<p><b>Vitaphone System:</b> Developed by Western Electric, it synchronized sound with film through a separate disc.</p>' +
+                    '<p><b>Movietone Sound System:</b> This system recorded sound directly onto the filmstrip, making it more convenient and popular.</p>' },
+        { id: 12, content: 'Color Film', start: '1930-01-01', end: '1939-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Technicolor:</b> Introduced a three-strip process, creating vibrant and realistic color in films like \"The Wizard of Oz\" (1939).</p>' +
+                    '<p><b>Kodachrome:</b> A popular color film stock for both amateur and professional use.</p>' },
+        { id: 13, content: 'Widescreen and Aspect Ratios', start: '1950-01-01', end: '1969-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Cinemascope:</b> Introduced anamorphic widescreen, enhancing the cinematic experience.</p>' +
+                    '<p><b>Cinerama:</b> Utilized multiple projectors and screens to create an immersive panoramic experience.</p>' },
+        { id: 14, content: 'Special Effects', start: '1950-01-01', end: '1969-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Stop-motion Animation:</b> Pioneered by Ray Hurryhausen, it brought fantastical creatures to life in films like \"Clash of the Titans\" (1981).</p>' +
+                '<p><b>Matte Painting:</b> Used to create background landscapes and environments.</p>' +
+                '<p><b>Miniatures:</b> Tiny scale models were filmed to depict large-scale scenes.</p>' },
+        { id: 15, content: 'New Film Stocks', start: '1960-01-01', end: '1979-01-01', group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Eastman Color and Ektachrome:</b> Improved color film stocks.</p>' +
+                    '<p><b>Kodak Super 8:</b> A popular format for amateur filmmakers.</p>' },
+        { id: 16, content: 'Computer-Generated Imagery (CGI)', start: '1970-01-01', end: today, group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>TRON (1982):</b>One of the earliest films to incorporate computer-generated imagery.</p>' +
+                '<p><b>Jurrasic Park (1993):</b> Revolutionary use of CGI for lifelike dinosaurs.</p>' },
+        { id: 17, content: 'Digital Cinema', start: '1990-01-01', end: today, group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>George Lucas\' Digital Push:</b> Lucas played a key role in advancing digital filmmaking with the \"Star Wars\" prequels, which began in 1999.</p>' +
+                '<p><b>\"The Phantom Menace\" (1999):</b> The first major film to be projected digitally.</p>' },
+        { id: 18, content: 'HD and 4K', start: '2000-01-01', end: today, group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>HD and Ultra HD:</b> Advancements in resolution and image quality.</p>' },
+        { id: 19, content: 'AI and Machine Learning', start: '2010-01-01', end: today, group: 'additional', className: 'cinematic-advancements', 
+            items: '<p><b>Deepfake Technology:</b> Controversial technology that can alter faces and voices in films.</p>' }
     ]);
     
     // Create a timeline
     const container = document.getElementById('timeline');
     const options = {
-        start: '1970-01-01', // Start year for the timeline
+        start: '1890-01-01', // Start year for the timeline
         end: '2023-01-01',   // End year for the timeline
         groupOrder: 'desc',  // Order the groups in descending order
+        zoomMax: 1000 * 60 * 60 * 24 * 365 * 140, // Set the maximum zoom-out range to 140 years
     };
     const timeline = new vis.Timeline(container, timelineData, options);
     timeline.setGroups([
@@ -87,11 +120,39 @@
         movieDetailsContainer.innerHTML = detailsHtml;
         }
     }
-    
+
+    // Get the advancement details container
+    const advancementDetailsContainer = document.getElementById('advancement-container');
+
+    // Function to display advancement details
+    function displayAdvancementDetails(advId) {
+        const adv = additionalData.get(advId);
+        if (adv) {
+        const detailsHtml = `
+            <h3>${adv.content}</h3>
+            <p id='release-date'><b>Timeframe: </b>${adv.start} to ${adv.end}</p>
+            ${adv.items}
+        `;
+        advancementDetailsContainer.innerHTML = detailsHtml;
+        }
+    }
+
     // Add a click event listener to the timeline items
     timeline.on('click', (properties) => {
         if (properties.item) {
-        displayMovieDetails(properties.item);
+            const item = timelineData.get(properties.item);
+            if (item) {
+                if (item.group === 'main') {
+                    displayMovieDetails(properties.item);
+                } else if (item.group === 'additional') {
+                    displayAdvancementDetails(properties.item);
+                }
+            } else {
+                const advItem = additionalData.get(properties.item);
+                if (advItem) {
+                    displayAdvancementDetails(properties.item);
+                }
+            }
         }
     });
 
@@ -106,6 +167,18 @@
 
     // Call the function to set the initial movie details when the page loads
     window.addEventListener('load', setInitialMovieDetails);
+
+    // Function to set the initial advancement details
+    function setInitialAdvancementDetails() {
+        // Set the advancement ID for "Silent Film Era"
+        const initialAdvId = 10;
+        
+        // Display the details for the initial advancement
+        displayAdvancementDetails(initialAdvId);
+    }
+
+    // Call the function to set the initial advancement details when the page loads
+    window.addEventListener('load', setInitialAdvancementDetails);
 
 
 
