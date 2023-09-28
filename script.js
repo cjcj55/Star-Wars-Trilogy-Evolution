@@ -16,7 +16,7 @@
             cast: 'Mark Hamill, Harrison Ford, Carrie Fisher, Billy Dee Williams, Anthony Daniels, David Prowse, Kenny Baker, Peter Mayhew, Frank Oz',
             cinematic: 'Epic space and ground battles, including the Battle of Endor.',
             visual: 'The creation of the Ewoks and the Emperor\s throne room.',
-            tech: 'Further developments in practical effects and puppetry.'},
+            tech: 'Further developments in practical effects and puppetry.  Continued use of models and matte paintings.'},
         { id: 4, content: 'Episode I: The Phantom Menace', start: '1999-05-19', group: 'main',
             cast: 'Liam Neeson, Ewam McGregor, Natalie Portman, Jake Lloyd, Ahmed Best, Ian McDiarmid, Anthony Daniels, Kenny Baker, Pernilla August, Frank Oz',
             cinematic: 'Introduced advanced CGI technology for more elaborate and expansive worlds.',
